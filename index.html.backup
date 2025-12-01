@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPR 대상 여부 3분 자가진단 | 생산자책임재활용제도</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">♻️</span>
+                <span class="logo-text">EPR 자가진단 가이드</span>
+            </div>
+            <nav>
+                <a href="#intro" class="nav-link">제도 소개</a>
+                <a href="#evaluation" class="nav-link">평가 제도</a>
+                <a href="#reporting" class="nav-link">실적 제출</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="badge">신규 담당자 & 사업자 전용</span>
+                    <h1>복잡한 포장재 재활용 의무,<br>3분 만에 확인하세요.</h1>
+                    <p class="hero-desc">법령집을 뒤적거릴 필요 없습니다. 간단한 질문에 답하면<br>귀사가 생산자책임재활용(EPR) 제도 대상인지 바로 알려드립니다.</p>
+                    <button id="start-btn" class="btn btn-primary btn-lg">자가진단 시작하기</button>
+                </div>
+                <div class="hero-visual">
+                    <div class="glass-card float-animation">
+                        <div class="icon-box">📦</div>
+                        <div class="card-text">
+                            <strong>포장재</strong>
+                            <span>종이, 비닐, 플라스틱...</span>
+                        </div>
+                    </div>
+                    <div class="glass-card float-animation delay-1">
+                        <div class="icon-box">🏭</div>
+                        <div class="card-text">
+                            <strong>제품</strong>
+                            <span>타이어, 전지, 형광등...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="wizard" class="wizard-section hidden">
+            <div class="container">
+                <div class="wizard-card">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <div class="wizard-header">
+                        <span class="step-indicator">Step <span id="current-step">1</span> / 3</span>
+                        <h2 id="question-text">귀사의 사업 형태는 무엇입니까?</h2>
+                    </div>
+
+                    <div class="options-grid" id="options-container">
+                        <!-- Options will be injected by JS -->
+                    </div>
+
+                    <div class="wizard-footer">
+                        <button id="prev-btn" class="btn btn-text hidden">이전</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="result" class="result-section hidden">
+            <div class="container">
+                <div class="result-card" id="result-card">
+                    <div class="result-icon" id="result-icon">✅</div>
+                    <h2 id="result-title">진단 결과</h2>
+                    <p id="result-desc">결과 설명이 여기에 표시됩니다.</p>
+
+                    <div class="result-actions">
+                        <button class="btn btn-primary" onclick="location.reload()">다시 진단하기</button>
+                        <button class="btn btn-outline" id="share-btn">결과 공유하기</button>
+                        <button class="btn btn-text" onclick="window.print()">🖨️ 인쇄 / PDF 저장</button>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>💡 알아두세요</h3>
+                        <p>이 결과는 간이 진단 결과이며, 법적 효력은 없습니다. 정확한 판정을 위해서는 공단 콜센터(1544-1234)로 문의하시기 바랍니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Content Sections -->
+        <section id="intro" class="content-section bg-white">
+            <div class="container">
+                <div class="section-header">
+                    <h2>생산자책임재활용(EPR) 제도란?</h2>
+                    <p>제품 생산자나 포장재를 이용한 제품의 생산자에게<br>그 제품이나 포장재의 폐기물에 대하여 일정량의 재활용 의무를 부여하는 제도입니다.</p>
+                </div>
+                <div class="intro-box">
+                    <p><strong>법적 근거:</strong> 자원의 절약과 재활용촉진에 관한 법률 제16조</p>
+                    <p>재활용 의무를 이행하지 않을 경우, 재활용에 소요되는 비용 이상의 <strong>재활용부과금</strong>이 부과됩니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="roles" class="content-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>주체별 역할</h2>
+                </div>
+                <div class="role-grid">
+                    <div class="role-card">
+                        <div class="role-icon">🏛️</div>
+                        <h3>환경부</h3>
+                        <ul>
+                            <li>제도 총괄 운영</li>
+                            <li>법령 및 지침 제·개정</li>
+                            <li>재활용 의무율 고시</li>
+                        </ul>
+                    </div>
+                    <div class="role-card">
+                        <div class="role-icon">🏢</div>
+                        <h3>한국환경공단</h3>
+                        <ul>
+                            <li>출고·수입 실적 접수 및 승인</li>
+                            <li>재활용 의무 이행 실적 확인</li>
+                            <li>재활용 부과금 부과 및 징수</li>
+                        </ul>
+                    </div>
+                    <div class="role-card highlight">
+                        <div class="role-icon">🏭</div>
+                        <h3>의무생산자 (귀사)</h3>
+                        <ul>
+                            <li>제품·포장재 출고·수입 실적 제출</li>
+                            <li>재활용 분담금 납부 (공제조합)</li>
+                            <li>회수 및 재활용 의무 이행</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="evaluation" class="content-section bg-white">
+            <div class="container">
+                <div class="section-header">
+                    <h2>포장재 재질·구조 평가 제도</h2>
+                    <p>포장재의 재활용 용이성을 평가하여 등급을 부여하고,<br>이를 제품에 표시하도록 하는 제도입니다.</p>
+                </div>
+
+                <div class="evaluation-grid">
+                    <div class="eval-card">
+                        <h3>평가 등급</h3>
+                        <p class="eval-desc">재활용 용이성에 따라 4개 등급으로 구분됩니다.</p>
+                        <div class="grade-list">
+                            <div class="grade-item best">
+                                <span class="grade-badge">최우수</span>
+                                <span class="grade-text">재활용이 매우 쉬움</span>
+                            </div>
+                            <div class="grade-item good">
+                                <span class="grade-badge">우수</span>
+                                <span class="grade-text">재활용이 쉬움</span>
+                            </div>
+                            <div class="grade-item normal">
+                                <span class="grade-badge">보통</span>
+                                <span class="grade-text">일반적인 수준</span>
+                            </div>
+                            <div class="grade-item difficult">
+                                <span class="grade-badge">어려움</span>
+                                <span class="grade-text">재활용이 어려움 (표시 의무)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="eval-card">
+                        <h3>이행 절차</h3>
+                        <div class="step-list">
+                            <div class="step-item">
+                                <div class="step-num">1</div>
+                                <div class="step-content">
+                                    <strong>자체 평가</strong>
+                                    <p>포장재 재질·구조 기준에 따라 자체 평가 실시</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-num">2</div>
+                                <div class="step-content">
+                                    <strong>신청서 제출</strong>
+                                    <p>한국환경공단에 평가 신청서 제출</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-num">3</div>
+                                <div class="step-content">
+                                    <strong>결과 통보</strong>
+                                    <p>공단 확인 후 등급 결정 및 통보 (10일 이내)</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-num">4</div>
+                                <div class="step-content">
+                                    <strong>등급 표시</strong>
+                                    <p>제품 겉면에 평가 결과(등급) 표시</p>
+                                </div>
+                                <p>PVC 포장재, 유색 페트병 등 재활용이 현저히 곤란한 포장재는 사용이 금지될 수 있습니다.</p>
+                            </div>
+
+                            <div class="calculator-box">
+                                <h3>♻️ 포장재 등급 모의 계산기</h3>
+                                <p class="calc-desc">포장재 종류를 선택하고 세부 항목을 입력하세요.</p>
+
+                                <div class="calc-category-select">
+                                    <label>포장재 종류 선택</label>
+                                    <select id="calc-category">
+                                        <option value="pet">페트병 (PET Bottle)</option>
+                                        <option value="psp">발포합성수지 (PSP)</option>
+                                        <option value="single">단일재질 용기/트레이</option>
+                                        <option value="film">필름/시트류</option>
+                                        <option value="glass">유리병</option>
+                                        <option value="paper">종이팩</option>
+                                    </select>
+                                </div>
+
+                                <div class="calc-grid" id="calc-inputs">
+                                    <!-- Dynamic inputs will be injected here by JS -->
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">1</div>
+                                    <h3>시스템 접속</h3>
+                                    <p>EPR 시스템 (portal.budamgum.or.kr) 접속 및 로그인</p>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">2</div>
+                                    <h3>실적서 작성</h3>
+                                    <p>품목별 전년도 출고/수입량 입력</p>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">3</div>
+                                    <h3>증빙서류 첨부</h3>
+                                    <p>매출액 증빙(부가가치세 과세표준증명원), 수입신고필증 등</p>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">4</div>
+                                    <h3>제출 완료</h3>
+                                    <p>4월 15일 기한 엄수 (미제출 시 과태료)</p>
+                                </div>
+                            </div>
+                            <div class="cta-box">
+                                <a href="https://portal.budamgum.or.kr" target="_blank" class="btn btn-primary">EPR 실적제출
+                                    시스템
+                                    바로가기</a>
+                            </div>
+                        </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 Environment Assurance System Guide. Unofficial Tool.</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot UI -->
+    <div id="chatbot-container" class="chatbot-container hidden">
+        <div class="chatbot-header">
+            <span>🤖 EPR 가이드 봇</span>
+            <button id="close-chat-btn" class="close-btn">&times;</button>
+        </div>
+        <div class="chatbot-settings">
+            <input type="password" id="api-key-input" placeholder="OpenAI API Key 입력" />
+            <button id="save-api-key-btn">저장</button>
+        </div>
+        <div id="chat-messages" class="chat-messages">
+            <div class="message bot-message">
+                안녕하세요! EPR 제도에 대해 궁금한 점을 물어보세요.
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chat-input" placeholder="메시지를 입력하세요..." />
+            <button id="send-msg-btn">전송</button>
+        </div>
+    </div>
+    <button id="open-chat-btn" class="chat-float-btn">💬</button>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
